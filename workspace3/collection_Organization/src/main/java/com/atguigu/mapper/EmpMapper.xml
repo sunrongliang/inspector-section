@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.mapper.EmpMapper">
+	<select id="slectAll" resultType="com.atguigu.bean.Employee" parameterType="com.atguigu.bean.Employee">
+		select *
+		from employee_info 
+		where 1 = 1 
+		<if test="status != null">
+			and status = #{status}
+		</if>
+		<if test="org_id != null">
+			and org_id = #{org_id}
+		</if>
+		<if test="login_name != null and !&quot;&quot;.equals(login_name)">
+			and login_name like #{login_name}
+		</if>
+		<if test="user_name != null and !&quot;&quot;.equals(user_name)">
+			and user_name like #{user_name}
+		</if>
+		
+	</select>
+	
+	<select id="selectById" resultType="com.atguigu.bean.Employee" parameterType="int">
+		select *
+		from employee_info 
+		where
+		id = #{id}
+	</select>
+	
+	<insert id="insertEmp" parameterType="com.atguigu.bean.Employee">
+		insert into 
+		employee_info
+		(
+		id,                                 
+		create_time,                   
+		modify_time,                   
+		version,                   
+		number,                   
+		status,                    
+		user_name,                    
+		personal_id,                   
+		sex,                    
+		birthday,                    
+		nation,                    
+		password,                    
+		login_name,                   
+		married,                    
+		province,                   
+		city,                    
+		email,                   
+		join_time,                    
+		position_id,                   
+		org_id,                    
+		cc_login,                   
+		cc_pwd,                   
+		cc_server,                  
+		cc_phone,                  
+		contact_mode,                   
+		attach_org_id,                  
+		attach_entrust_id   
+		)
+		values
+		(
+		#{id},                   
+		#{create_time},                     
+		#{modify_time},                     
+		#{version},                     
+		#{number },                     
+		#{status},                      
+		#{user_name},                      
+		#{personal_id},                     
+		#{sex},                      
+		#{birthday},                      
+		#{nation},                      
+		#{password},                      
+		#{login_name},                     
+		#{married},                      
+		#{province},                     
+		#{city},                      
+		#{email},                     
+		#{join_time},                      
+		#{position_id},                     
+		#{org_id},                      
+		#{cc_login},                     
+		#{cc_pwd},                     
+		#{cc_server},                    
+		#{cc_phone},                    
+		#{contact_mode},                     
+		#{attach_org_id},                   
+		#{attach_entrust_id}   
+		)
+	</insert>
+	
+	<update id="updataEmp" parameterType="com.atguigu.bean.Employee">
+		update employee_info
+		set           
+		modify_time        = #{modify_time},               
+		version            = #{version},               
+		number             = #{number },              
+		status             = #{status},                
+		user_name          = #{user_name},                
+		personal_id        = #{personal_id},               
+		sex                = #{sex},                
+		birthday           = #{birthday},                
+		nation             = #{nation},                
+		password           = #{password},                
+		login_name         = #{login_name},               
+		married            = #{married},                
+		province           = #{province},               
+		city               = #{city},                
+		email              = #{email},               
+		join_time          = #{join_time},                
+		position_id        = #{position_id},               
+		org_id             = #{org_id},                
+		cc_login           = #{cc_login},               
+		cc_pwd             = #{cc_pwd},               
+		cc_server          = #{cc_server},              
+		cc_phone           = #{cc_phone},              
+		contact_mode       = #{contact_mode},               
+		attach_org_id      = #{attach_org_id},              
+		attach_entrust_id  =  #{attach_entrust_id}
+		WHERE 
+		id = #{id};
+	</update>
+	
+	<update id="updataEmpState" parameterType="com.atguigu.bean.Employee">
+		update employee_info
+		set                                      
+		status = #{status}              
+		WHERE 
+		id = #{id};
+	</update>
+	<!-- <insert id="insertOrg" parameterType="com.atguigu.bean.Organization">
+		insert into 
+		sys_organization
+		(
+		parent_id,
+		type,
+		principal_id,
+		name,
+		address,
+		phone,
+		post_code,
+		fax
+		) 
+		values
+		(
+		#{parent_id},
+		#{type},
+		#{principal_id},
+		#{name},
+		#{address},
+		#{phone},
+		#{post_code},
+		#{fax}
+		)
+		
+	</insert>
+	
+
+	
+	<delete id="deletOrg" parameterType="int">
+		DELETE FROM sys_organization WHERE id = #{id};
+	</delete> -->
+</mapper>
